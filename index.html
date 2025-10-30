@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ada Temizlik Hizmeti - Profesyonel Temizlik Çözümleri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* GENEL STİLLER */
+        :root {
+            --primary: #3a7bd5;
+            --primary-dark: #2a5fa0;
+            --primary-light: #5a9ae8;
+            --secondary: #00d2ff;
+            --accent: #00a8cc;
+            --light: #f8fdff;
+            --dark: #1a3a5f;
+            --text: #2c3e50;
+            --text-light: #6c7a89;
+            --white: #ffffff;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark), var(--accent));
+            --gradient-light: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            
+            /* Koyu mod için değişkenler */
+            --dark-primary: #8a2be2;
+            --dark-primary-dark: #6a1cb0;
+            --dark-primary-light: #a855f7;
+            --dark-secondary: #c084fc;
+            --dark-accent: #a855f7;
+            --dark-light: #121212;
+            --dark-dark: #e0e0e0;
+            --dark-text: #e0e0e0;
+            --dark-text-light: #a0a0a0;
+            --dark-white: #1e1e1e;
+            --dark-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --dark-gradient: linear-gradient(135deg, var(--dark-primary), var(--dark-secondary));
+            --dark-gradient-dark: linear-gradient(135deg, var(--dark-primary-dark), var(--dark-accent));
+        }
+        
+        /* Koyu mod sınıfı */
+        body.dark-mode {
+            --primary: var(--dark-primary);
+            --primary-dark: var(--dark-primary-dark);
+            --primary-light: var(--dark-primary-light);
+            --secondary: var(--dark-secondary);
+            --accent: var(--dark-accent);
+            --light: var(--dark-light);
+            --dark: var(--dark-dark);
+            --text: var(--dark-text);
+            --text-light: var(--dark-text-light);
+            --white: var(--dark-white);
+            --shadow: var(--dark-shadow);
+            --gradient: var(--dark-gradient);
+            --gradient-dark: var(--dark-gradient-dark);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* ARKAPLAN DEKORASYONU - GELİŞMİŞ KÖPÜK EFEKTLERİ */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.7;
+        }
+        
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(173, 216, 230, 0.5), rgba(58, 123, 213, 0.3));
+            animation: float 20s infinite linear;
+            box-shadow: 0 0 25px rgba(173, 216, 230, 0.4);
+            filter: blur(1px);
+        }
+        
+        .bubble:nth-child(3n) {
+            background: radial-gradient(circle at 70% 30%, rgba(100, 200, 255, 0.4), rgba(0, 210, 255, 0.2));
+            animation-duration: 25s;
+        }
+        
+        .bubble:nth-child(3n+1) {
+            background: radial-gradient(circle at 30% 70%, rgba(70, 130, 255, 0.5), rgba(0, 168, 204, 0.3));
+            animation-duration: 30s;
+        }
+        
+        .bubble:nth-child(5n) {
+            background: radial-gradient(circle at 50% 50%, rgba(200, 230, 255, 0.6), rgba(100, 180, 255, 0.3));
+            animation-duration: 35s;
+        }
+        
+        body.dark-mode .bubble {
+            background: radial-gradient(circle at 30% 30%, rgba(100, 100, 200, 0.5), rgba(58, 58, 123, 0.3));
+            box-shadow: 0 0 25px rgba(100, 100, 200, 0.4);
+        }
+        
+        body.dark-mode .bubble:nth-child(3n) {
+            background: radial-gradient(circle at 70% 30%, rgba(70, 70, 150, 0.4), rgba(0, 100, 150, 0.2));
+        }
+        
+        body.dark-mode .bubble:nth-child(3n+1) {
+            background: radial-gradient(circle at 30% 70%, rgba(50, 50, 120, 0.5), rgba(0, 70, 100, 0.3));
+        }
+        
+        body.dark-mode .bubble:nth-child(5n) {
+            background: radial-gradient(circle at 50% 50%, rgba(80, 80, 160, 0.6), rgba(50, 100, 150, 0.3));
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" fill="%233a7bd5" opacity=".1"/></svg>');
+            background-size: 1200px 150px;
+            animation: wave 20s linear infinite;
+        }
+        
+        body.dark-mode .wave {
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" fill="%238a2be2" opacity=".1"/></svg>');
+        }
+        
+        .wave-2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" fill="%2300d2ff" opacity=".1"/></svg>');
+            background-size: 1200px 120px;
+            animation: wave 25s linear infinite reverse;
+        }
+        
+        body.dark-mode .wave-2 {
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" fill="%23c084fc" opacity=".1"/></svg>');
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-100px) translateX(100px) rotate(90deg) scale(1.1);
+            }
+            50% {
+                transform: translateY(-50px) translateX(-50px) rotate(180deg) scale(0.9);
+            }
+            75% {
+                transform: translateY(-150px) translateX(50px) rotate(270deg) scale(1.05);
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(360deg) scale(1);
+            }
+        }
+        
+        @keyframes wave {
+            0% {
+                background-position-x: 0;
+            }
+            100% {
+                background-position-x: 1200px;
+            }
+        }
+        
+        /* HEADER VE NAVİGASYON */
+        header {
+            background: rgba(255, 255, 255, 0.97);
+            color: var(--dark);
+            padding: 18px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(58, 123, 213, 0.1);
+        }
+        
+        body.dark-mode header {
+            background: rgba(30, 30, 30, 0.97);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(58, 123, 213, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+            background: var(--white);
+        }
+        
+        body.dark-mode .logo-icon {
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+            background: var(--dark-white);
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 5px;
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(10deg) scale(1.05);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text .brand {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text .tagline {
+            font-size: 12px;
+            color: var(--primary);
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin-left: 10px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 15px;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            transition: left 0.4s;
+            z-index: -1;
+            border-radius: 25px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: white;
+            box-shadow: 0 5px 15px rgba(58, 123, 213, 0.3);
+        }
+        
+        nav ul li a:hover::before, nav ul li a.active::before {
+            left: 0;
+        }
+        
+        /* TEMA DEĞİŞTİRME BUTONU */
+        .theme-toggle {
+            background: var(--gradient);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(58, 123, 213, 0.3);
+            transition: all 0.3s;
+            margin-left: 20px;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(58, 123, 213, 0.4);
+        }
+        
+        /* MOBİL MENÜ */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* SAYFALAR */
+        .page {
+            display: none;
+            min-height: calc(100vh - 180px);
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* HERO BÖLÜMÜ */
+        .hero {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 180px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-home {
+            background: linear-gradient(135deg, rgba(58, 123, 213, 0.85), rgba(0, 210, 255, 0.85)), url('hero-home.jpg');
+        }
+        
+        .hero-services {
+            background: linear-gradient(135deg, rgba(58, 123, 213, 0.85), rgba(0, 210, 255, 0.85)), url('hero-services.jpg');
+        }
+        
+        .hero-contact {
+            background: linear-gradient(135deg, rgba(58, 123, 213, 0.85), rgba(0, 210, 255, 0.85)), url('hero-contact.jpg');
+        }
+        
+        body.dark-mode .hero-home {
+            background: linear-gradient(135deg, rgba(30, 30, 60, 0.85), rgba(70, 0, 100, 0.85)), url('hero-home.jpg');
+        }
+        
+        body.dark-mode .hero-services {
+            background: linear-gradient(135deg, rgba(30, 30, 60, 0.85), rgba(70, 0, 100, 0.85)), url('hero-services.jpg');
+        }
+        
+        body.dark-mode .hero-contact {
+            background: linear-gradient(135deg, rgba(30, 30, 60, 0.85), rgba(70, 0, 100, 0.85)), url('hero-contact.jpg');
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,181.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+            color: white;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin: 0 auto 50px;
+            max-width: 700px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(58, 123, 213, 0.4);
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        body.dark-mode .btn {
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-dark);
+            transition: left 0.5s;
+            z-index: -1;
+            border-radius: 30px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(58, 123, 213, 0.5);
+        }
+        
+        body.dark-mode .btn:hover {
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.5);
+        }
+        
+        .btn:hover::before {
+            left: 0;
+        }
+        
+        /* Arama Butonları */
+        .call-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .call-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .call-btn.phone {
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .call-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .call-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .call-btn.phone:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .call-btn.whatsapp:hover {
+            background: #128C7E;
+        }
+        
+        /* HİZMETLER BÖLÜMÜ */
+        .services {
+            padding: 120px 0;
+            background-color: var(--white);
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 60px;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            position: relative;
+            border: 1px solid rgba(58, 123, 213, 0.1);
+        }
+        
+        body.dark-mode .service-card {
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(58, 123, 213, 0.15);
+        }
+        
+        body.dark-mode .service-card:hover {
+            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.15);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .service-img {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-img {
+            transform: scale(1.05);
+        }
+        
+        .service-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
+        }
+        
+        .service-content {
+            padding: 30px;
+        }
+        
+        .service-content h3 {
+            color: var(--dark);
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+        }
+        
+        .service-content p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .service-features {
+            margin-top: 25px;
+        }
+        
+        .service-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .service-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        body.dark-mode .service-features li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .service-features li:hover {
+            background: rgba(58, 123, 213, 0.03);
+            padding-left: 10px;
+        }
+        
+        body.dark-mode .service-features li:hover {
+            background: rgba(138, 43, 226, 0.05);
+        }
+        
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .service-features i {
+            color: var(--primary);
+            margin-right: 12px;
+            font-size: 14px;
+        }
+        
+        /* NEDEN BİZ BÖLÜMÜ */
+        .why-us {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #e6f2ff, #f0f8ff);
+            position: relative;
+        }
+        
+        body.dark-mode .why-us {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 45px 30px;
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .feature-icon {
+            width: 90px;
+            height: 90px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            box-shadow: 0 8px 20px rgba(58, 123, 213, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        body.dark-mode .feature-icon {
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+        }
+        
+        .feature:hover .feature-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: var(--gradient);
+            filter: blur(10px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+        
+        .feature-icon i {
+            color: white;
+            font-size: 36px;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+        }
+        
+        .feature h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        
+        .feature p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+        
+        /* İSTATİSTİKLER */
+        .stats {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body.dark-mode .stats {
+            background: var(--dark-gradient);
+        }
+        
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,181.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stat-item {
+            padding: 25px;
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        /* İLETİŞİM BÖLÜMÜ */
+        .contact {
+            padding: 120px 0;
+            background-color: var(--white);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #f8fcff, #e6f2ff);
+            padding: 45px 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(58, 123, 213, 0.1);
+        }
+        
+        body.dark-mode .contact-info {
+            background: linear-gradient(135deg, #1e1e2e, #252540);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .contact-info h3 {
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-size: 1.6rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            margin-right: 18px;
+            color: var(--primary);
+            font-size: 20px;
+            margin-top: 3px;
+            min-width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(58, 123, 213, 0.3);
+        }
+        
+        body.dark-mode .social-links a {
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(58, 123, 213, 0.4);
+        }
+        
+        body.dark-mode .social-links a:hover {
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        .contact-form {
+            background: linear-gradient(135deg, #f8fcff, #e6f2ff);
+            padding: 45px 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(58, 123, 213, 0.1);
+        }
+        
+        body.dark-mode .contact-form {
+            background: linear-gradient(135deg, #1e1e2e, #252540);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: white;
+            color: var(--text);
+        }
+        
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group textarea,
+        body.dark-mode .form-group select {
+            background-color: #2d2d44;
+            border-color: #444;
+            color: var(--dark-text);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.2);
+            outline: none;
+        }
+        
+        body.dark-mode .form-group input:focus,
+        body.dark-mode .form-group textarea:focus,
+        body.dark-mode .form-group select:focus {
+            border-color: var(--dark-primary);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+        }
+        
+        /* HARİTA */
+        .map-container {
+            height: 450px;
+            margin-top: 50px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(58, 123, 213, 0.1);
+        }
+        
+        body.dark-mode .map-container {
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 70px 0 25px;
+            position: relative;
+        }
+        
+        body.dark-mode footer {
+            background: var(--dark-gradient-dark);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 30px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* MOBİL UYUMLULUK - GELİŞTİRİLMİŞ */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                margin-top: 0;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                width: 100%;
+            }
+            
+            nav ul li {
+                margin: 8px 12px 8px 0;
+            }
+            
+            .hero {
+                padding: 120px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 25px;
+                right: 20px;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            nav ul li {
+                margin: 8px 0;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                display: block;
+                width: 100%;
+                text-align: left;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 3rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .call-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .call-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Arkaplan Dekorasyonu -->
+    <div class="bg-decoration" id="bgDecoration"></div>
+    <div class="wave"></div>
+    <div class="wave-2"></div>
+
+    <!-- Header ve Navigasyon -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo nav-link" data-page="home">
+                <div class="logo-icon">
+                    <!-- LOGO: logo.png dosyasını buraya yükleyin -->
+                    <img src="logo.png" alt="Ada Temizlik">
+                </div>
+                <div class="logo-text">
+                    <span class="brand">Ada Temizlik</span>
+                    <span class="tagline">PROFESYONEL HİZMET</span>
+                </div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Ana Sayfa</a></li>
+                    <li><a href="#" class="nav-link" data-page="services">Hizmetlerimiz</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">İletişim</a></li>
+                </ul>
+            </nav>
+            
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Ana Sayfa -->
+    <section id="home" class="page active">
+        <div class="hero hero-home">
+            <div class="container hero-content">
+                <h1>Temizlikte Profesyonel Çözüm</h1>
+                <p>Ada Temizlik Hizmeti olarak, ev ve ofis temizliğinde en kaliteli hizmeti sunuyoruz. Sağlıklı ve hijyenik yaşam alanları için bizimle iletişime geçin.</p>
+                <a href="#" class="btn nav-link" data-page="contact">Hemen Teklif Al</a>
+                
+                <!-- Arama Butonları -->
+                <div class="call-buttons">
+                    <a href="tel:+905392213131" class="call-btn phone">
+                        <i class="fas fa-phone"></i>
+                        Hemen Ara
+                    </a>
+                    <a href="https://wa.me/905392213131" target="_blank" class="call-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp'tan Ara
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- İstatistikler Bölümü -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-text">Mutlu Müşteri</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-text">Yıllık Deneyim</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-text">Müşteri Desteği</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">%100</div>
+                        <div class="stat-text">Müşteri Memnuniyeti</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hizmetlerimiz Önizleme -->
+        <section class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Hizmetlerimiz</h2>
+                </div>
+                <p class="section-subtitle">Profesyonel ekibimiz ve son teknoloji ekipmanlarımızla temizlik ihtiyaçlarınız için kapsamlı çözümler sunuyoruz.</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <!-- RESİM: ev-temizlik.jpg dosyasını buraya yükleyin -->
+                        <div class="service-img" style="background-image: url('ev-temizlik.jpg');"></div>
+                        <div class="service-content">
+                            <h3>Ev Temizliği</h3>
+                            <p>Günlük, haftalık veya aylık ev temizlik hizmetleri. Profesyonel ekipmanlar ve ekolojik temizlik ürünleri kullanıyoruz.</p>
+                            <div class="service-features">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Günlük temizlik</li>
+                                    <li><i class="fas fa-check-circle"></i> Derin temizlik</li>
+                                    <li><i class="fas fa-check-circle"></i> Koltuk yıkama</li>
+                                    <li><i class="fas fa-check-circle"></i> Perde temizliği</li>
+                                </ul>
+                            </div>
+                            <a href="#" class="btn nav-link" data-page="services" style="margin-top: 15px; display: inline-block; padding: 12px 30px;">Detaylı Bilgi</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <!-- RESİM: ofis-temizlik.jpg dosyasını buraya yükleyin -->
+                        <div class="service-img" style="background-image: url('ofis-temizlik.jpg');"></div>
+                        <div class="service-content">
+                            <h3>Ofis Temizliği</h3>
+                            <p>İş yerleriniz için özel temizlik programları. Çalışanlarınızın sağlığı ve verimliliği için hijyenik ortam sağlıyoruz.</p>
+                            <div class="service-features">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Günlük ofis temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Cam temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Zemin bakımı</li>
+                                    <li><i class="fas fa-check-circle"></i> Tuvalet ve mutfak temizliği</li>
+                                </ul>
+                            </div>
+                            <a href="#" class="btn nav-link" data-page="services" style="margin-top: 15px; display: inline-block; padding: 12px 30px;">Detaylı Bilgi</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <!-- RESİM: cam-temizlik.jpg dosyasını buraya yükleyin -->
+                        <div class="service-img" style="background-image: url('cam-temizlik.jpg');"></div>
+                        <div class="service-content">
+                            <h3>Cam Temizliği</h3>
+                            <p>İç ve dış cam temizliği hizmeti. Özel ekipmanlar ve tekniklerle camlarınızı lekesiz temizliyoruz.</p>
+                            <div class="service-features">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Pencere camları</li>
+                                    <li><i class="fas fa-check-circle"></i> Vitrin camları</li>
+                                    <li><i class="fas fa-check-circle"></i> Bina dış cephe camları</li>
+                                    <li><i class="fas fa-check-circle"></i> Zorlu ulaşılabilir camlar</li>
+                                </ul>
+                            </div>
+                            <a href="#" class="btn nav-link" data-page="services" style="margin-top: 15px; display: inline-block; padding: 12px 30px;">Detaylı Bilgi</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Arama Butonları - Sayfa Altı -->
+                <div class="call-buttons" style="margin-top: 50px;">
+                    <a href="tel:+905392213131" class="call-btn phone">
+                        <i class="fas fa-phone"></i>
+                        Hemen Ara
+                    </a>
+                    <a href="https://wa.me/905392213131" target="_blank" class="call-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp'tan Ara
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Neden Biz Bölümü -->
+        <section class="why-us">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Neden Bizi Tercih Etmelisiniz?</h2>
+                </div>
+                <p class="section-subtitle">Müşteri memnuniyetini her şeyin üzerinde tutan anlayışımız ve kaliteli hizmet standartlarımızla fark yaratıyoruz.</p>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Deneyimli Ekip</h3>
+                        <p>10 yılı aşkın tecrübemizle en zorlu temizlik işlerinde bile garantili çözümler sunuyoruz.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Ekolojik Ürünler</h3>
+                        <p>Çevreye ve insan sağlığına duyarlı, doğa dostu temizlik ürünleri kullanıyoruz.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-tag"></i>
+                        </div>
+                        <h3>Uygun Fiyat</h3>
+                        <p>Kaliteli hizmeti en uygun fiyatlarla sunuyor, bütçenize uygun çözümler üretiyoruz.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>7/24 Hizmet</h3>
+                        <p>İhtiyaçlarınız doğrultusunda haftanın 7 günü 24 saat hizmet vermekteyiz.</p>
+                    </div>
+                </div>
+                
+                <!-- Arama Butonları - Sayfa Altı -->
+                <div class="call-buttons" style="margin-top: 50px;">
+                    <a href="tel:+905392213131" class="call-btn phone">
+                        <i class="fas fa-phone"></i>
+                        Hemen Ara
+                    </a>
+                    <a href="https://wa.me/905392213131" target="_blank" class="call-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp'tan Ara
+                    </a>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Hizmetler Sayfası -->
+    <section id="services" class="page">
+        <div class="hero hero-services">
+            <div class="container hero-content">
+                <h1>Hizmetlerimiz</h1>
+                <p>Ada Temizlik Hizmeti olarak sunduğumuz kapsamlı temizlik çözümleri</p>
+                
+                <!-- Arama Butonları -->
+                <div class="call-buttons">
+                    <a href="tel:+905392213131" class="call-btn phone">
+                        <i class="fas fa-phone"></i>
+                        Hemen Ara
+                    </a>
+                    <a href="https://wa.me/905392213131" target="_blank" class="call-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp'tan Ara
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Tüm Hizmetlerimiz</h2>
+                </div>
+                <p class="section-subtitle">İhtiyaçlarınıza özel çözümler sunmak için geniş bir hizmet yelpazesi oluşturduk.</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <!-- RESİM: ev-temizlik.jpg dosyasını buraya yükleyin -->
+                        <div class="service-img" style="background-image: url('ev-temizlik.jpg');"></div>
+                        <div class="service-content">
+                            <h3>Ev Temizliği</h3>
+                            <p>Günlük, haftalık veya aylık ev temizlik hizmetleri. Profesyonel ekipmanlar ve ekolojik temizlik ürünleri kullanıyoruz.</p>
+                            <div class="service-features">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Günlük temizlik</li>
+                                    <li><i class="fas fa-check-circle"></i> Derin temizlik</li>
+                                    <li><i class="fas fa-check-circle"></i> Koltuk yıkama</li>
+                                    <li><i class="fas fa-check-circle"></i> Perde temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Mutfak & Banyo temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Toz alma & Süpürme</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <!-- RESİM: ofis-temizlik.jpg dosyasını buraya yükleyin -->
+                        <div class="service-img" style="background-image: url('ofis-temizlik.jpg');"></div>
+                        <div class="service-content">
+                            <h3>Ofis Temizliği</h3>
+                            <p>İş yerleriniz için özel temizlik programları. Çalışanlarınızın sağlığı ve verimliliği için hijyenik ortam sağlıyoruz.</p>
+                            <div class="service-features">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Günlük ofis temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Cam temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Zemin bakımı</li>
+                                    <li><i class="fas fa-check-circle"></i> Tuvalet ve mutfak temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Çalışma alanı dezenfeksiyonu</li>
+                                    <li><i class="fas fa-check-circle"></i> Ofis ekipmanı temizliği</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <!-- RESİM: cam-temizlik.jpg dosyasını buraya yükleyin -->
+                        <div class="service-img" style="background-image: url('cam-temizlik.jpg');"></div>
+                        <div class="service-content">
+                            <h3>Cam Temizliği</h3>
+                            <p>İç ve dış cam temizliği hizmeti. Özel ekipmanlar ve tekniklerle camlarınızı lekesiz temizliyoruz.</p>
+                            <div class="service-features">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Pencere camları</li>
+                                    <li><i class="fas fa-check-circle"></i> Vitrin camları</li>
+                                    <li><i class="fas fa-check-circle"></i> Bina dış cephe camları</li>
+                                    <li><i class="fas fa-check-circle"></i> Zorlu ulaşılabilir camlar</li>
+                                    <li><i class="fas fa-check-circle"></i> Ayna temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Cam kapı ve bölmeler</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <!-- RESİM: insaat-temizlik.jpg dosyasını buraya yükleyin -->
+                        <div class="service-img" style="background-image: url('insaat-temizlik.jpg');"></div>
+                        <div class="service-content">
+                            <h3>İnşaat Sonrası Temizlik</h3>
+                            <p>İnşaat veya tadilat sonrası oluşan toz, kir ve artıkları temizliyor, yaşam alanınızı hazır hale getiriyoruz.</p>
+                            <div class="service-features">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Toz ve kir temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Yapışkan kalıntıların temizlenmesi</li>
+                                    <li><i class="fas fa-check-circle"></i> Zemin ve duvar temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Cam ve ayna temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Dolap ve raf temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Son kontroller ve detaylı temizlik</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <!-- RESİM: koltuk-yikama.jpg dosyasını buraya yükleyin -->
+                        <div class="service-img" style="background-image: url('koltuk-yikama.jpg');"></div>
+                        <div class="service-content">
+                            <h3>Koltuk Yıkama</h3>
+                            <p>Profesyonel koltuk yıkama hizmeti ile koltuklarınızı derinlemesine temizliyor ve ömrünü uzatıyoruz.</p>
+                            <div class="service-features">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Buhar ile derin temizlik</li>
+                                    <li><i class="fas fa-check-circle"></i> Leke çıkarma</li>
+                                    <li><i class="fas fa-check-circle"></i> Dezenfeksiyon</li>
+                                    <li><i class="fas fa-check-circle"></i> Koku giderme</li>
+                                    <li><i class="fas fa-check-circle"></i> Yerinde koltuk yıkama</li>
+                                    <li><i class="fas fa-check-circle"></i> Hızlı kurutma işlemi</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <!-- RESİM: ozel-temizlik.jpg dosyasını buraya yükleyin -->
+                        <div class="service-img" style="background-image: url('ozel-temizlik.jpg');"></div>
+                        <div class="service-content">
+                            <h3>Özel Temizlik Hizmetleri</h3>
+                            <p>Düğün, parti, etkinlik sonrası temizlik gibi özel ihtiyaçlarınız için esnek çözümler sunuyoruz.</p>
+                            <div class="service-features">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Etkinlik sonrası temizlik</li>
+                                    <li><i class="fas fa-check-circle"></i> Taşınma öncesi/sonrası temizlik</li>
+                                    <li><i class="fas fa-check-circle"></i> Kiralık daire temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Ofis taşınması temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Bahçe ve teras temizliği</li>
+                                    <li><i class="fas fa-check-circle"></i> Özel talep temizlik hizmetleri</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Arama Butonları - Sayfa Altı -->
+                <div class="call-buttons" style="margin-top: 50px;">
+                    <a href="tel:+905392213131" class="call-btn phone">
+                        <i class="fas fa-phone"></i>
+                        Hemen Ara
+                    </a>
+                    <a href="https://wa.me/905392213131" target="_blank" class="call-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp'tan Ara
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fiyatlandırma -->
+        <section class="why-us">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Fiyatlandırma</h2>
+                </div>
+                <p class="section-subtitle">Bütçenize uygun, şeffaf fiyatlandırma politikamızla hizmetinizdeyiz.</p>
+                <div class="features">
+                    <div class="feature">
+                        <h3>Ev Temizliği</h3>
+                        <div class="price" style="font-size: 1.8rem; color: var(--primary); font-weight: 700; margin: 15px 0;">*** TL'den başlayan fiyatlarla</div>
+                        <ul style="text-align: left; margin-top: 15px; list-style: none; padding: 0;">
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> 100 m²'ye kadar</li>
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Profesyonel ekipman</li>
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Ekolojik ürünler</li>
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> 2 saat temizlik</li>
+                        </ul>
+                    </div>
+                    <div class="feature">
+                        <h3>Ofis Temizliği</h3>
+                        <div class="price" style="font-size: 1.8rem; color: var(--primary); font-weight: 700; margin: 15px 0;">*** TL'den başlayan fiyatlarla</div>
+                        <ul style="text-align: left; margin-top: 15px; list-style: none; padding: 0;">
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> 200 m²'ye kadar</li>
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Haftalık program</li>
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Zemin bakımı dahil</li>
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> 4 saat temizlik</li>
+                        </ul>
+                    </div>
+                    <div class="feature">
+                        <h3>Koltuk Yıkama</h3>
+                        <div class="price" style="font-size: 1.8rem; color: var(--primary); font-weight: 700; margin: 15px 0;">*** TL'den başlayan fiyatlarla</div>
+                        <ul style="text-align: left; margin-top: 15px; list-style: none; padding: 0;">
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Koltuk başına</li>
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Derin temizlik</li>
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Leke garantili</li>
+                            <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Özel temizlik solüsyonu</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="btn nav-link" data-page="contact">Özel Teklif Alın</a>
+                </div>
+                
+                <!-- Arama Butonları - Sayfa Altı -->
+                <div class="call-buttons" style="margin-top: 50px;">
+                    <a href="tel:+905392213131" class="call-btn phone">
+                        <i class="fas fa-phone"></i>
+                        Hemen Ara
+                    </a>
+                    <a href="https://wa.me/905392213131" target="_blank" class="call-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp'tan Ara
+                    </a>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- İletişim Sayfası -->
+    <section id="contact" class="page">
+        <div class="hero hero-contact">
+            <div class="container hero-content">
+                <h1>İletişim</h1>
+                <p>Bize ulaşın, temizlik ihtiyaçlarınız için en uygun çözümü sunalım</p>
+                
+                <!-- Arama Butonları -->
+                <div class="call-buttons">
+                    <a href="tel:+905392213131" class="call-btn phone">
+                        <i class="fas fa-phone"></i>
+                        Hemen Ara
+                    </a>
+                    <a href="https://wa.me/905392213131" target="_blank" class="call-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp'tan Ara
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="contact">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>İletişim Bilgileri</h3>
+                        <p><i class="fas fa-user"></i> <strong>Yetkili Kişi:</strong> Süleyman ÇALTAK</p>
+                        <p><i class="fas fa-phone"></i> <strong>Telefon:</strong> (539) 221 31 31</p>
+                        <p><i class="fas fa-mobile-alt"></i> <strong>Telefon:</strong> (538) 765 52 72</p>
+                        <p><i class="fas fa-envelope"></i> <strong>E-posta:</strong> scaltak81@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Adres:</strong> Çekmece Mahallesi, DEFNE/HATAY</p>
+                        <p><i class="fas fa-clock"></i> <strong>Çalışma Saatleri:</strong> Haftanın 7 günü 08:00 - 22:00</p>
+                        
+                        <div style="margin-top: 30px;">
+                            <h3>Sosyal Medya</h3>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://wa.me/905392213131" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Bize Ulaşın</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Adınız Soyadınız</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-posta Adresiniz</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefon Numaranız</label>
+                                <input type="tel" id="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">İlgilendiğiniz Hizmet</label>
+                                <select id="service">
+                                    <option value="">Seçiniz</option>
+                                    <option value="ev-temizlik">Ev Temizliği</option>
+                                    <option value="ofis-temizlik">Ofis Temizliği</option>
+                                    <option value="cam-temizlik">Cam Temizliği</option>
+                                    <option value="insaat-temizlik">İnşaat Sonrası Temizlik</option>
+                                    <option value="koltuk-yikama">Koltuk Yıkama</option>
+                                    <option value="ozel-temizlik">Özel Temizlik Hizmetleri</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mesajınız</label>
+                                <textarea id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Gönder</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Arama Butonları - Sayfa Altı -->
+                <div class="call-buttons" style="margin-top: 50px;">
+                    <a href="tel:+905392213131" class="call-btn phone">
+                        <i class="fas fa-phone"></i>
+                        Hemen Ara
+                    </a>
+                    <a href="https://wa.me/905392213131" target="_blank" class="call-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp'tan Ara
+                    </a>
+                </div>
+                
+                <!-- Harita -->
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25694.36691005236!2d36.13922336960444!3d36.20254838303868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1525c3cd6d85b0c1%3A0x7dcb4d614dfdce!2sAntakya%2C%20Hatay!5e0!3m2!1str!2str!4v1657543123456!5m2!1str!2str" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ada Temizlik Hizmeti</h3>
+                    <p>Profesyonel temizlik çözümleri ile yaşam alanlarınızı hijyenik hale getiriyoruz. Müşteri memnuniyeti bizim için her zaman önceliklidir.</p>
+                    
+                    <!-- Arama Butonları - Footer -->
+                    <div class="call-buttons" style="margin-top: 25px;">
+                        <a href="tel:+905392213131" class="call-btn phone" style="padding: 10px 20px; font-size: 14px;">
+                            <i class="fas fa-phone"></i>
+                            Hemen Ara
+                        </a>
+                        <a href="https://wa.me/905392213131" target="_blank" class="call-btn whatsapp" style="padding: 10px 20px; font-size: 14px;">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Hızlı Bağlantılar</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home">Ana Sayfa</a></li>
+                        <li><a href="#" class="nav-link" data-page="services">Hizmetlerimiz</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>İletişim</h3>
+                    <p><i class="fas fa-phone"></i> (539) 221 31 31</p>
+                    <p><i class="fas fa-phone"></i> (538) 765 52 72</p>
+                    <p><i class="fas fa-envelope"></i> scaltak81@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Çekmece Mah. DEFNE/HATAY</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ada Temizlik Hizmeti. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sayfa geçişleri
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Aktif sayfayı kaldır
+                document.querySelector('.page.active').classList.remove('active');
+                document.querySelector('.nav-link.active').classList.remove('active');
+                
+                // Yeni sayfayı aktif yap
+                const pageId = this.getAttribute('data-page');
+                document.getElementById(pageId).classList.add('active');
+                this.classList.add('active');
+                
+                // Sayfanın başına kaydır
+                window.scrollTo(0, 0);
+                
+                // Mobil menüyü kapat
+                document.getElementById('mainNav').classList.remove('active');
+            });
+        });
+        
+        // Form gönderim işlemi
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.');
+            this.reset();
+        });
+        
+        // Arkaplan baloncukları oluştur
+        function createBubbles() {
+            const bgDecoration = document.getElementById('bgDecoration');
+            const bubbleCount = 25;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                
+                // Rastgele boyut ve pozisyon
+                const size = Math.random() * 150 + 40;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = 20 + Math.random() * 25;
+                
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${left}%`;
+                bubble.style.top = `${top}%`;
+                bubble.style.animationDelay = `${delay}s`;
+                bubble.style.animationDuration = `${duration}s`;
+                
+                bgDecoration.appendChild(bubble);
+            }
+        }
+        
+        // Mobil menü butonu
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+        
+        // Tema değiştirme işlevi
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // LocalStorage'dan tema tercihini kontrol et
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Tema değiştirme butonuna tıklama
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Sayfa yüklendiğinde baloncukları oluştur
+        window.addEventListener('load', createBubbles);
+    </script>
+</body>
+</html>
